@@ -1,0 +1,17 @@
+org 0000h
+ljmp main
+org 4200H
+main: mov r0,#0a0H
+MOV R1,#05H ;NO OF ELEMENTS
+MOV R2,#02H  ;NO TO BE ADDED
+
+LOOP: MOV A,@R0
+ADD A,R2
+MOV R2,A
+INC R0
+DJNZ R1,LOOP
+
+
+
+;R3 HAS THE SUM
+

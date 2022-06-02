@@ -1,0 +1,25 @@
+ mov tmod,#20h
+ MOV SCON,#50H
+ MOV TH1,#0FAH
+ MOV DPTR,#MYDATA
+ SETB TR1
+       
+ AGAIN: MOV A,#00H
+ 
+ MOVC A,@A+DPTR
+JZ ENDA
+       
+ LCALL SEND 
+ INC DPTR
+ SJMP AGAIN
+     
+ SEND: MOV SBUF,A
+ LOOP: JNB TI, LOOP
+ CLR TI
+ RET
+       
+       
+ ENDA: sjmp ENDA
+       
+      ORG 40H
+      MYDATA: DB "YES0"
